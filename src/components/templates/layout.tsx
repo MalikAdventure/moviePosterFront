@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Header from '../container/header/header';
-// import Breadcrumbs from '../organisms/breadcrumbs/breadcrumbs';
+import Breadcrumbs from '../container/breadCrumbs/breadCrumbs';
 // import Footer from '../organisms/footer/footer';
 // import UpButton from '../molecules/upButton/upButton';
 
@@ -11,7 +11,7 @@ const Layout: FC = () => {
   return (
     <div>
       <Header />
-      {/* <Breadcrumbs /> */}
+      <Breadcrumbs />
       <main className='container mx-auto'>
         <Outlet />
       </main>
