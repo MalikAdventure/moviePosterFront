@@ -7,7 +7,7 @@ const NotFound: FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section>
+    <section className='mb-15'>
       <h1 className='font-bold text-4xl text-white mb-5'>
         Страница не найдена
       </h1>
