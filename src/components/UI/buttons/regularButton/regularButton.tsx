@@ -10,7 +10,7 @@ const RegularButton: FC<IRegularButton> = ({ children, ...props }) => {
   return (
     <button
       {...props}
-      className='text-4xl cursor-pointer rounded-full border-none transition-opacity focus:outline-none bg-blue-700 hover:bg-blue-600 active:bg-blue-700 py-1 w-40'
+      className='text-2xl cursor-pointer rounded-xl bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-300 px-3'
     >
       {children}
     </button>

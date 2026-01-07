@@ -22,7 +22,7 @@ const Navigation: FC = () => {
         <nav>
           <ul className='flex gap-10 items-center font-bold text-xl text-blue-500'>
             <li>
-              <Link to='/'>Фильмы</Link>
+              <Link to='/movie_collection'>Фильмы</Link>
             </li>
             <li>
               <Link to='/'>Категории</Link>

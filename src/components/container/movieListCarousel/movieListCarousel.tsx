@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+// import { useRef, useState } from 'react';
 import type { FC } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/css/pagination';
 // import 'swiper/css/navigation';
 
-import './movieListCarousel.scss';
+// import './movieListCarousel.scss';
 
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
@@ -16,6 +16,10 @@ import { Pagination, Navigation } from 'swiper/modules';
 const MovieListCarousel: FC = () => {
   return (
     <>
+      <div className='flex justify-between items-center mb-5'>
+        <h2 className='font-bold text-3xl text-white'>Фильмы</h2>
+        <p className='font-bold text-2xl text-blue-500'>Увидеть больше</p>
+      </div>
       <Swiper
         slidesPerView={5}
         spaceBetween={30}
