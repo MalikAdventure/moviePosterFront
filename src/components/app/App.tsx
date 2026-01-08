@@ -8,6 +8,8 @@ import MainPage from '@/pages/mainPage';
 import NotFoundPage from '@/pages/notFoundPage';
 import MovieCollectionPage from '@/pages/movieCollectionPage';
 import MovieDetailedPage from '@/pages/movieDetailedPage';
+import LoginPage from '@/pages/loginPage';
+import RegisterPage from '@/pages/registerPage';
 
 const App: FC = () => {
   return (
@@ -23,6 +25,8 @@ const App: FC = () => {
             path='movie_collection/:slug'
             element={<MovieDetailedPage />}
           ></Route>
+          <Route path='login' element={<LoginPage />}></Route>
+          <Route path='register' element={<RegisterPage />}></Route>
           {/* <Route path='catalog' element={<CatalogPage />}></Route>
           <Route path='catalog/:id' element={<DetailedPage />}></Route>
           <Route path='authorization' element={<AuthorizationPage />}></Route>

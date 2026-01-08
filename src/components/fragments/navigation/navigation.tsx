@@ -36,7 +36,7 @@ const Navigation: FC = () => {
           </ul>
         </nav>
         <div className='flex items-center font-bold text-xl text-blue-800'>
-          <Link to='/'>Личный кабинет</Link>
+          <Link to='/login'>Личный кабинет</Link>
         </div>
       </div>
     </>

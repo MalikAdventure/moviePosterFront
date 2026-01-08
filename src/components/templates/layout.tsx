@@ -5,8 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../container/header/header';
 import Breadcrumbs from '../container/breadCrumbs/breadCrumbs';
 import Footer from '../container/footer/footer';
-// import Footer from '../organisms/footer/footer';
-// import UpButton from '../molecules/upButton/upButton';
+import UpButton from '../container/upButton/upButton';
 
 const Layout: FC = () => {
   return (
@@ -16,7 +15,7 @@ const Layout: FC = () => {
       <main className='container mx-auto'>
         <Outlet />
       </main>
-      {/* <UpButton />*/}
+      <UpButton />
       <Footer />
     </div>
   );
