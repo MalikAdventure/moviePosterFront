@@ -7,6 +7,9 @@ import { useForm } from 'react-hook-form';
 
 import type { ILogin } from './login.interface';
 
+import AttractiveButton from '@/components/UI/buttons/attractiveButton/attractiveButton';
+import FullButton from '@/components/UI/buttons/fullButton/fullButton';
+
 const Login: FC = () => {
   const { register, handleSubmit, formState } = useForm<ILogin>({
     mode: 'onChange',
@@ -64,12 +67,7 @@ const Login: FC = () => {
             <p className='text-1xl text-red-600'>{passwordError}</p>
           )}
           <div className='flex justify-between mt-5 mb-5'>
-            <button
-              type='submit'
-              className='bg-blue-500 text-2xl w-50 rounded-xl'
-            >
-              Войти
-            </button>
+            <AttractiveButton type='submit'>Войти</AttractiveButton>
             <Link to='/register' className='text-blue-500 text-2xl'>
               У меня нет аккаунта
             </Link>
@@ -77,20 +75,20 @@ const Login: FC = () => {
           <p className='text-2xl text-center text-white mb-5'>
             Или войти через
           </p>
-          <button className='text-xl bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 mb-2 cursor-pointer'>
-            Войти с помощью Google
-          </button>
-          <button className='text-xl bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 mb-2 cursor-pointer'>
-            Войти с помощью GitHub
-          </button>
-          <button className='text-xl bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 mb-5 cursor-pointer'>
-            Войти с помощью Telegram
-          </button>
+          <div className='flex flex-col gap-2 mb-5'>
+            <FullButton>Войти с помощью Google</FullButton>
+            <FullButton>Войти с помощью GitHub</FullButton>
+            <FullButton>Войти с помощью Telegram</FullButton>
+          </div>
           <p className='text-center'>
             <Link to='/' className='text-blue-500 text-2xl cursor-pointer'>
               Восстановить аккаунт
             </Link>
           </p>
+          {/* Удалить !!! */}
+          <Link to='/profile' className='bg-red-700'>
+            В профиль
+          </Link>
         </form>
       </section>
     </>

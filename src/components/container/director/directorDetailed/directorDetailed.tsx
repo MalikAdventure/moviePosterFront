@@ -1,22 +1,24 @@
 import type { FC } from 'react';
 
-import Poster from '@/components/fragments/poster/poster';
+import avatarImg from '@/assets/tempImgs/avatar.png';
 
-const MovieDetailed: FC = () => {
+const DirectorDetailed: FC = () => {
   return (
     <>
-      <h1 className='font-bold text-3xl text-white mb-5'>Фильм</h1>
+      <h2 className='font-bold text-3xl text-white mb-5'>Режиссёр</h2>
       <div className='flex justify-between mb-20'>
-        <Poster />
-        <div className='bg-neutral-300 w-4/5 rounded-xl p-5'>
-          <div className='flex mb-5'>
-            <h2 className='font-bold text-2xl w-1/5'>Название фильма</h2>
-            <p className='font-bold text-1xl w-4/5'>Какое-то название</p>
+        <div className='bg-neutral-300 w-70 h-70 rounded-xl p-2'>
+          <img src={avatarImg} alt='poster' className='w-70 h-65' />
+        </div>
+        <div className='bg-neutral-300 w-4/5 rounded-xl p-5 flex flex-col gap-5'>
+          <div className='flex'>
+            <h2 className='font-bold text-2xl w-1/4'>Имя режиссёра</h2>
+            <p className='font-bold text-1xl w-3/4'>Фамилия Имя Отчество</p>
           </div>
-          <hr className='w-9/10 mx-auto border-t-2 mb-5' />
-          <div className='flex mb-5'>
-            <h2 className='font-bold text-2xl w-1/5'>Сюжет</h2>
-            <p className='text-1xl text-justify w-4/5'>
+          <hr className='w-9/10 mx-auto border-t-2' />
+          <div className='flex'>
+            <h2 className='font-bold text-2xl w-1/4'>Биография</h2>
+            <p className='text-1xl w-3/4'>
               Вот вам яркий пример современных тенденций — сплочённость команды
               профессионалов способствует подготовке и реализации приоретизации
               разума над эмоциями. Современные технологии достигли такого
@@ -38,31 +40,15 @@ const MovieDetailed: FC = () => {
               структуры проекта обнародованы.
             </p>
           </div>
-          <hr className='w-9/10 mx-auto border-t-2 mb-5' />
-          <div className='flex mb-5'>
-            <h2 className='font-bold text-2xl w-1/5'>Режиссер</h2>
-            <p className='font-bold text-1xl text-blue-500 w-4/5'>
-              Фамилия Имя Отчество
-            </p>
+          <hr className='w-9/10 mx-auto border-t-2 ' />
+          <div className='flex'>
+            <h2 className='font-bold text-2xl w-1/4'>Страна рождения</h2>
+            <p className='font-bold text-1xl text-blue-500 w-3/4'>США</p>
           </div>
-          <hr className='w-9/10 mx-auto border-t-2 mb-5' />
-          <div className='flex mb-5'>
-            <h2 className='font-bold text-2xl w-1/5'>Продюсер</h2>
-            <p className='font-bold text-1xl text-blue-500 w-4/5'>
-              Фамилия Имя Отчество, Фамилия Имя Отчество
-            </p>
-          </div>
-          <hr className='w-9/10 mx-auto border-t-2 mb-5' />
-          <div className='flex mb-5'>
-            <h2 className='font-bold text-2xl w-1/5'>Страна</h2>
-            <p className='font-bold text-1xl w-4/5'>США</p>
-          </div>
-          <hr className='w-9/10 mx-auto border-t-2 mb-5' />
-          <div className='flex mb-5'>
-            <h2 className='font-bold text-2xl w-1/5'>
-              Ограничение по возрасту
-            </h2>
-            <p className='font-bold text-1xl w-4/5'>18+</p>
+          <hr className='w-9/10 mx-auto border-t-2' />
+          <div className='flex'>
+            <h2 className='font-bold text-2xl w-1/4'>Возраст</h2>
+            <p className='font-bold text-1xl w-3/4'>23 года</p>
           </div>
         </div>
       </div>
@@ -70,4 +56,4 @@ const MovieDetailed: FC = () => {
   );
 };
 
-export default MovieDetailed;
+export default DirectorDetailed;

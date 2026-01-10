@@ -13,7 +13,7 @@ const MovieItem: FC = () => {
 
   return (
     <>
-      <li onClick={toMovieDetailedPage}>
+      <li onClick={toMovieDetailedPage} className='cursor-pointer'>
         <Poster />
       </li>
     </>

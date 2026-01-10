@@ -10,6 +10,11 @@ import MovieCollectionPage from '@/pages/movieCollectionPage';
 import MovieDetailedPage from '@/pages/movieDetailedPage';
 import LoginPage from '@/pages/loginPage';
 import RegisterPage from '@/pages/registerPage';
+import ProfilePage from '@/pages/profilePage';
+import DirectorListPage from '@/pages/directorListPage';
+import DirectorDetailedPage from '@/pages/directorDetailedPage';
+import CategoryCardsPage from '@/pages/categoryCardsPage';
+import TagListPage from '@/pages/tagListPage';
 
 const App: FC = () => {
   return (
@@ -25,12 +30,16 @@ const App: FC = () => {
             path='movie_collection/:slug'
             element={<MovieDetailedPage />}
           ></Route>
+          <Route path='director_list' element={<DirectorListPage />}></Route>
+          <Route
+            path='director_list/:slug'
+            element={<DirectorDetailedPage />}
+          ></Route>
+          <Route path='category' element={<CategoryCardsPage />}></Route>
+          <Route path='tag' element={<TagListPage />}></Route>
           <Route path='login' element={<LoginPage />}></Route>
           <Route path='register' element={<RegisterPage />}></Route>
-          {/* <Route path='catalog' element={<CatalogPage />}></Route>
-          <Route path='catalog/:id' element={<DetailedPage />}></Route>
-          <Route path='authorization' element={<AuthorizationPage />}></Route>
-          <Route path='registration' element={<RegistrationPage />}></Route> */}
+          <Route path='profile' element={<ProfilePage />}></Route>
           <Route path='*' element={<NotFoundPage />}></Route>
         </Route>
       </Routes>

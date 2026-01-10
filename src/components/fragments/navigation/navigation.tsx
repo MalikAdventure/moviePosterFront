@@ -25,13 +25,13 @@ const Navigation: FC = () => {
               <Link to='/movie_collection'>Фильмы</Link>
             </li>
             <li>
-              <Link to='/'>Категории</Link>
+              <Link to='/director_list'>Режиссёры</Link>
             </li>
             <li>
-              <Link to='/'>Режиссёры</Link>
+              <Link to='/category'>Категории</Link>
             </li>
             <li>
-              <Link to='/'>Теги</Link>
+              <Link to='/tag'>Теги</Link>
             </li>
           </ul>
         </nav>

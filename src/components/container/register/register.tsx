@@ -7,6 +7,9 @@ import { useForm } from 'react-hook-form';
 
 import type { IRegister } from './register.interface';
 
+import AttractiveButton from '@/components/UI/buttons/attractiveButton/attractiveButton';
+import FullButton from '@/components/UI/buttons/fullButton/fullButton';
+
 const Register: FC = () => {
   const { register, handleSubmit, formState, watch } = useForm<IRegister>({
     mode: 'onChange',
@@ -57,6 +60,7 @@ const Register: FC = () => {
             className='text-xl bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 mb-2'
             type='email'
             placeholder='Введите вашу почту'
+            autoComplete='current-email'
             {...register('email', {
               required: 'Это поле обязательно к заполнению',
               pattern: {
@@ -73,6 +77,7 @@ const Register: FC = () => {
             className='text-xl bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 mb-2'
             type='password'
             placeholder='Введите ваш пароль'
+            autoComplete='new-password'
             {...register('password', {
               required: 'Это поле обязательно к заполнению',
               pattern: {
@@ -91,6 +96,7 @@ const Register: FC = () => {
             className='text-xl bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 mb-2'
             type='password'
             placeholder='Введите ваш пароль повторно'
+            autoComplete='new-password'
             {...register('repeatPassword', {
               required: 'Это поле обязательно к заполнению',
               validate: (value) =>
@@ -101,12 +107,7 @@ const Register: FC = () => {
             <p className='text-1xl text-red-600 mb-2'>{repeatPasswordError}</p>
           )}
           <div className='flex justify-between mt-5 mb-5'>
-            <button
-              type='submit'
-              className='bg-blue-500 text-2xl w-50 rounded-xl'
-            >
-              Войти
-            </button>
+            <AttractiveButton type='submit'>Войти</AttractiveButton>
             <Link to='/login' className='text-blue-500 text-2xl'>
               У меня уже есть аккаунт
             </Link>
@@ -114,15 +115,11 @@ const Register: FC = () => {
           <p className='text-2xl text-center text-white mb-5'>
             Или войти через
           </p>
-          <button className='text-xl bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 mb-2 cursor-pointer'>
-            Войти с помощью Google
-          </button>
-          <button className='text-xl bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 mb-2 cursor-pointer'>
-            Войти с помощью GitHub
-          </button>
-          <button className='text-xl bg-neutral-300 hover:bg-neutral-400 active:bg-neutral-300 text-neutral-800 px-2 rounded-xl w-full h-8 cursor-pointer'>
-            Войти с помощью Telegram
-          </button>
+          <div className='flex flex-col gap-2'>
+            <FullButton>Войти с помощью Google</FullButton>
+            <FullButton>Войти с помощью GitHub</FullButton>
+            <FullButton>Войти с помощью Telegram</FullButton>
+          </div>
         </form>
       </section>
     </>
