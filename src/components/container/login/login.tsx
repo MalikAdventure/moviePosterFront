@@ -10,6 +10,10 @@ import type { ILogin } from './login.interface';
 import AttractiveButton from '@/components/UI/buttons/attractiveButton/attractiveButton';
 import FullButton from '@/components/UI/buttons/fullButton/fullButton';
 
+import googleImg from '@/assets/imgs/google.png';
+import githubImg from '@/assets/imgs/github.png';
+import telegramImg from '@/assets/imgs/telegram.png';
+
 const Login: FC = () => {
   const { register, handleSubmit, formState } = useForm<ILogin>({
     mode: 'onChange',
@@ -76,9 +80,18 @@ const Login: FC = () => {
             Или войти через
           </p>
           <div className='flex flex-col gap-2 mb-5'>
-            <FullButton>Войти с помощью Google</FullButton>
-            <FullButton>Войти с помощью GitHub</FullButton>
-            <FullButton>Войти с помощью Telegram</FullButton>
+            <FullButton>
+              <img src={googleImg} alt='google' className='w-5 h-5' />
+              <span>Войти с помощью Google</span>
+            </FullButton>
+            <FullButton>
+              <img src={githubImg} alt='github' className='w-5 h-5' />
+              <span>Войти с помощью GitHub</span>
+            </FullButton>
+            <FullButton>
+              <img src={telegramImg} alt='telegram' className='w-5 h-5' />
+              <span>Войти с помощью Telegram</span>
+            </FullButton>
           </div>
           <p className='text-center'>
             <Link to='/' className='text-blue-500 text-2xl cursor-pointer'>

@@ -12,14 +12,14 @@ const BreadCrumbs: FC = () => {
     .map((crumb) => {
       currentLink += `/${crumb}`;
       return (
-        <>
+        <li key={crumb} className='flex'>
           <p className='mr-2 text-white text-1xl'>&gt;</p>
-          <li className='mr-2' key={crumb}>
+          <div className='mr-2'>
             <Link to={currentLink} className='text-white text-1xl'>
               {crumb}
             </Link>
-          </li>
-        </>
+          </div>
+        </li>
       );
     });
 

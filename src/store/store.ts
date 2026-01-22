@@ -1,25 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-// import allBooksReducer from './reducers/allBooksSlice';
-// import bookReducer from './reducers/bookSlice';
 import upReducer from './reducers/upSlice';
-// import timeReducer from './reducers/timeSlice';
-// import searchReducer from './reducers/searchSlice';
-// import favoritesReducer from './reducers/favoritesSlice';
-// import cartReducer from './reducers/cartSlice';
+import moviesPaginationReducer from './reducers/moviesPaginationSlice';
 import languageReducer from './reducers/languageSlice';
-// import hamburgerReducer from './reducers/hamburgerSlice';
 import { api } from '../services/movieServices';
 
 const rootReducer = combineReducers({
-  // allBooksReducer,
-  // bookReducer,
   upReducer,
-  // timeReducer,
-  // searchReducer,
-  // favoritesReducer,
-  // cartReducer,
+  moviesPaginationReducer,
   languageReducer,
-  // hamburgerReducer,
   [api.reducerPath]: api.reducer,
 });
 

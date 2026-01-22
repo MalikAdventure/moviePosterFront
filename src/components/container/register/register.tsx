@@ -10,6 +10,10 @@ import type { IRegister } from './register.interface';
 import AttractiveButton from '@/components/UI/buttons/attractiveButton/attractiveButton';
 import FullButton from '@/components/UI/buttons/fullButton/fullButton';
 
+import googleImg from '@/assets/imgs/google.png';
+import githubImg from '@/assets/imgs/github.png';
+import telegramImg from '@/assets/imgs/telegram.png';
+
 const Register: FC = () => {
   const { register, handleSubmit, formState, watch } = useForm<IRegister>({
     mode: 'onChange',
@@ -116,9 +120,18 @@ const Register: FC = () => {
             Или войти через
           </p>
           <div className='flex flex-col gap-2'>
-            <FullButton>Войти с помощью Google</FullButton>
-            <FullButton>Войти с помощью GitHub</FullButton>
-            <FullButton>Войти с помощью Telegram</FullButton>
+            <FullButton>
+              <img src={googleImg} alt='google' className='w-5 h-5' />
+              <span>Войти с помощью Google</span>
+            </FullButton>
+            <FullButton>
+              <img src={githubImg} alt='github' className='w-5 h-5' />
+              <span>Войти с помощью GitHub</span>
+            </FullButton>
+            <FullButton>
+              <img src={telegramImg} alt='telegram' className='w-5 h-5' />
+              <span>Войти с помощью Telegram</span>
+            </FullButton>
           </div>
         </form>
       </section>
