@@ -1,13 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import upReducer from './reducers/upSlice';
-import moviesPaginationReducer from './reducers/moviesPaginationSlice';
-import languageReducer from './reducers/languageSlice';
+import filterReducer from './reducers/filterSlice';
+// import languageReducer from './reducers/languageSlice';
 import { api } from '../services/movieServices';
 
 const rootReducer = combineReducers({
   upReducer,
-  moviesPaginationReducer,
-  languageReducer,
+  filterReducer,
+  // languageReducer,
   [api.reducerPath]: api.reducer,
 });
 

@@ -28,6 +28,10 @@ const Poster: FC<IPoster> = ({ movie, className }) => {
         <p className='text-1xl text-blue-500'>
           {movie.genres?.map((genre) => genre.name).join(', ')}
         </p>
+        <p className='text-1xl text-blue-500'>
+          {movie.tags?.map((tag) => tag.tag).join(', ')}
+        </p>
+        <p className='text-1xl text-blue-500'>{movie.release_date}</p>
       </div>
     </>
   );
