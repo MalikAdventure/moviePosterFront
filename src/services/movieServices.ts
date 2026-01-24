@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import type { IMovie } from '../types/IMovie';
+import type { IDirector } from '@/types/IDirector';
 
 export interface IMoviesResponse {
   count: number;
@@ -77,9 +78,43 @@ export const api = createApi({
         return currentArg !== previousArg;
       },
     }),
+    getAllDirectors: builder.query<IMoviesResponse, IFilterState>({
+      query: (filters) => ({
+        url: '/alldirectorslist/',
+        params: {
+          cursor: filters.cursor || undefined,
+          ordering: filters.ordering || undefined,
+        },
+      }),
+      serializeQueryArgs: ({ endpointName, queryArgs }) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { cursor, ...rest } = queryArgs;
+        return `${endpointName}-${JSON.stringify(rest)}`;
+      },
+      merge: (currentCache, newItems) => {
+        if (!newItems.previous) {
+          return newItems;
+        }
+        const existingSlugs = new Set(currentCache.results.map((m) => m.slug));
+        const uniqueNewResults = newItems.results.filter(
+          (m) => !existingSlugs.has(m.slug),
+        );
+        currentCache.results.push(...uniqueNewResults);
+        currentCache.next = newItems.next;
+        currentCache.previous = newItems.previous;
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+    }),
     getMovieBySlug: builder.query<IMovie, string>({
       query: (slug) => ({
         url: `/movieslist/${slug}`,
+      }),
+    }),
+    getDirectorBySlug: builder.query<IDirector, string>({
+      query: (slug) => ({
+        url: `/alldirectorslist/${slug}`,
       }),
     }),
     getGenres: builder.query<IGenresResponse, void>({

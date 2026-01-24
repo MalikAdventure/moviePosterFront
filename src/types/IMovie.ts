@@ -1,3 +1,5 @@
+import type { IDirector } from './IDirector';
+
 export interface IMovie {
   id: number;
   original_title: string;
@@ -30,14 +32,6 @@ interface ICategory {
 interface IGenre {
   id: number;
   name: string;
-}
-
-interface IDirector {
-  id: number;
-  second_name: string;
-  first_name: string;
-  patronymic: string | null;
-  full_name: string;
 }
 
 interface ICountry {

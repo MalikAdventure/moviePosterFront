@@ -1,33 +1,58 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface FilterState {
+export interface IFilterState {
   cursor: string | null;
+  ordering: string | null;
   genres: string | null;
   tags: string | null;
-  ordering: string | null;
 }
 
-const initialState: FilterState = {
+interface FilterState {
+  movieFilters: IFilterState;
+  directorFilters: IFilterState;
+}
+
+const initialFilterGroup: IFilterState = {
   cursor: null,
+  ordering: null,
   genres: null,
   tags: null,
-  ordering: null,
+};
+
+const initialState: FilterState = {
+  movieFilters: { ...initialFilterGroup },
+  directorFilters: { ...initialFilterGroup },
 };
 
 const filterSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    setFilter(state, action: PayloadAction<Partial<FilterState>>) {
-      return { ...state, ...action.payload };
+    setMovieFilter: (state, action: PayloadAction<Partial<IFilterState>>) => {
+      state.movieFilters = { ...state.movieFilters, ...action.payload };
     },
-    resetPagination: (state) => {
-      state.cursor = null;
+    setDirectorFilter: (
+      state,
+      action: PayloadAction<Partial<IFilterState>>,
+    ) => {
+      state.directorFilters = { ...state.directorFilters, ...action.payload };
+    },
+    resetMovieFilters: (state) => {
+      state.movieFilters = { ...initialFilterGroup };
+    },
+    resetDirectorFilters: (state) => {
+      state.directorFilters = { ...initialFilterGroup };
     },
     resetFilters: () => initialState,
   },
 });
 
-export const { setFilter, resetPagination, resetFilters } = filterSlice.actions;
+export const {
+  setMovieFilter,
+  setDirectorFilter,
+  resetMovieFilters,
+  resetDirectorFilters,
+  resetFilters,
+} = filterSlice.actions;
 export default filterSlice.reducer;

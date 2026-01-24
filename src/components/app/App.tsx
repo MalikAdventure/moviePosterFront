@@ -6,7 +6,7 @@ import Layout from '../templates/layout';
 
 import MainPage from '@/pages/mainPage';
 import NotFoundPage from '@/pages/notFoundPage';
-import MovieCollectionPage from '@/pages/movieCollectionPage';
+import MovieListPage from '@/pages/movieListPage';
 import MovieDetailedPage from '@/pages/movieDetailedPage';
 import LoginPage from '@/pages/loginPage';
 import RegisterPage from '@/pages/registerPage';
@@ -22,12 +22,9 @@ const App: FC = () => {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<MainPage />}></Route>
+          <Route path='movie_list' element={<MovieListPage />}></Route>
           <Route
-            path='movie_collection'
-            element={<MovieCollectionPage />}
-          ></Route>
-          <Route
-            path='movie_collection/:slug'
+            path='movie_list/:slug'
             element={<MovieDetailedPage />}
           ></Route>
           <Route path='director_list' element={<DirectorListPage />}></Route>

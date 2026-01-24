@@ -4,20 +4,20 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '@/hooks/redux';
 import { setContextPage } from '@/store/reducers/contextSlice';
 
-import CardDetailed from '@/components/container/card/cardDetailed/cardDetailed';
+import CardList from '@/components/container/card/cardList/cardList';
 
-const MovieDetailedPage: FC = () => {
+const MovieCollectionPage: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setContextPage('movieDetailedPage'));
+    dispatch(setContextPage('movieListPage'));
   });
 
   return (
     <>
-      <CardDetailed />
+      <CardList />
     </>
   );
 };
 
-export default MovieDetailedPage;
+export default MovieCollectionPage;
