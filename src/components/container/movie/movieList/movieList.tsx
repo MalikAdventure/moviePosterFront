@@ -49,7 +49,9 @@ const MovieList: FC = () => {
             <MovieItem key={movie.slug} movie={movie} />
           ))}
         </ul>
-        {movies?.length === 0 && !error && <p>Информация не найдена</p>}
+        {movies?.length === 0 && !isLoading && !error && (
+          <p className='text-white text-center'>Информация не найдена</p>
+        )}
         {isLoading && <Spinner />}
         {isFetching && !isLoading && <Spinner />}
         {error && !isLoading && !isFetching && (

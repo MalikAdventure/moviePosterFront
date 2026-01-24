@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, ChangeEvent } from 'react';
 
 import { api } from '@/services/movieServices';
 
@@ -19,7 +19,7 @@ const Filter: FC = () => {
     dispatch(resetFilters());
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     dispatch(setFilter({ [name]: value || null, cursor: null }));
   };
