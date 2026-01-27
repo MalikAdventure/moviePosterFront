@@ -4,7 +4,7 @@ import PickButton from '@/components/UI/buttons/pickButton/pickButton';
 
 import RegularButton from '@/components/UI/buttons/regularButton/regularButton';
 
-const Tag: FC = () => {
+const TagList: FC = () => {
   return (
     <>
       <section className='mb-15'>
@@ -32,4 +32,4 @@ const Tag: FC = () => {
   );
 };
 
-export default Tag;
+export default TagList;

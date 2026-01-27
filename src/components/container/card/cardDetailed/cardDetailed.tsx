@@ -11,6 +11,7 @@ import { useAppSelector, useAppDispatch } from '@/hooks/redux';
 
 import type { IMovie } from '@/types/IMovie';
 import type { IDirector } from '@/types/IDirector';
+import type { ICategory } from '@/types/ICategory';
 
 import Poster from '@/components/fragments/poster/poster';
 import Spinner from '@/components/UI/loaders/spinner/spinner';
@@ -86,6 +87,14 @@ const DirectorInfo: FC<SubInfoProps<IDirector>> = ({ data, InfoRow }) => (
   </>
 );
 
+const CategoryInfo: FC<SubInfoProps<ICategory>> = ({ data, InfoRow }) => (
+  <>
+    <InfoRow label='Название' value={data.name} />
+    <hr className='w-9/10 mx-auto border-t-2 border-neutral-400 mb-5' />
+    <InfoRow label='Описание' value={data.slug} />
+  </>
+);
+
 const CardDetailed: FC = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
@@ -99,14 +108,14 @@ const CardDetailed: FC = () => {
       dispatch(setContextPage('movieDetailedPage'));
     } else if (pathname.includes('/director_list/')) {
       dispatch(setContextPage('directorDetailedPage'));
+    } else if (pathname.includes('/category_list/')) {
+      dispatch(setContextPage('categoryDetailedPage'));
     }
   }, [pathname, dispatch]);
 
-  const isMovieContext =
-    contextPage === 'movieDetailedPage' && pathname.includes('/movie_list/');
-  const isDirectorContext =
-    contextPage === 'directorDetailedPage' &&
-    pathname.includes('/director_list/');
+  const isMovieContext = contextPage === 'movieDetailedPage';
+  const isDirectorContext = contextPage === 'directorDetailedPage';
+  const isCategoryContext = contextPage === 'categoryDetailedPage';
 
   const movieQuery = api.useGetMovieBySlugQuery(String(params.slug), {
     skip: !isMovieContext,
@@ -116,7 +125,19 @@ const CardDetailed: FC = () => {
     skip: !isDirectorContext,
   });
 
-  const currentQuery = isMovieContext ? movieQuery : directorQuery;
+  const categoryQuery = api.useGetCategoryBySlugQuery(String(params.slug), {
+    skip: !isCategoryContext,
+  });
+
+  let currentQuery;
+  if (isMovieContext) {
+    currentQuery = movieQuery;
+  } else if (isDirectorContext) {
+    currentQuery = directorQuery;
+  } else {
+    currentQuery = categoryQuery;
+  }
+
   const { data: objectItem, isLoading, isFetching, error } = currentQuery;
 
   if (isLoading || isFetching) return <Spinner />;
@@ -129,19 +150,26 @@ const CardDetailed: FC = () => {
       <h2 className='text-white text-center mt-10'>Информация не найдена</h2>
     );
 
+  const getTitle = () => {
+    if (isMovieContext) return 'Информация о фильме';
+    if (isDirectorContext) return 'Карточка режиссера';
+    return 'Информация о категории';
+  };
+
   return (
     <div className='p-5'>
-      <h1 className='font-bold text-3xl text-white mb-5'>
-        {isMovieContext ? 'Информация о фильме' : 'Карточка режиссера'}
-      </h1>
-
+      <h1 className='font-bold text-3xl text-white mb-5'>{getTitle()}</h1>
       <div className='flex justify-between mb-20 gap-5'>
         <Poster objectItem={objectItem} className='!w-1/5' />
         <div className='bg-neutral-300 w-4/5 rounded-xl p-5'>
-          {isMovieContext ? (
+          {isMovieContext && (
             <MovieInfo data={objectItem as IMovie} InfoRow={InfoRow} />
-          ) : (
+          )}
+          {isDirectorContext && (
             <DirectorInfo data={objectItem as IDirector} InfoRow={InfoRow} />
+          )}
+          {isCategoryContext && (
+            <CategoryInfo data={objectItem as ICategory} InfoRow={InfoRow} />
           )}
         </div>
       </div>

@@ -28,10 +28,10 @@ const Navigation: FC = () => {
               <Link to='/director_list'>Режиссёры</Link>
             </li>
             <li>
-              <Link to='/category'>Категории</Link>
+              <Link to='/category_list'>Категории</Link>
             </li>
             <li>
-              <Link to='/tag'>Теги</Link>
+              <Link to='/tag_list'>Теги</Link>
             </li>
           </ul>
         </nav>

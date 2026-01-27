@@ -1,21 +1,25 @@
 import type { FC } from 'react';
 import type { IMovie } from '@/types/IMovie';
 import type { IDirector } from '@/types/IDirector';
+import type { ICategory } from '@/types/ICategory';
 
 import posterImg from '@/assets/imgs/poster.png';
 
 interface IPoster {
-  objectItem: IMovie | IDirector;
+  objectItem: IMovie | IDirector | ICategory;
   className?: string;
 }
 
 const Poster: FC<IPoster> = ({ objectItem, className }) => {
   const isMovie = 'original_title' in objectItem;
+  const isDirector = 'full_name' in objectItem;
+  const isCategory = !isMovie && !isDirector;
 
-  const name =
-    'original_title' in objectItem
-      ? objectItem.original_title
-      : objectItem.full_name;
+  const name = isMovie
+    ? objectItem.original_title
+    : isDirector
+      ? objectItem.full_name
+      : objectItem.name;
 
   const img = 'poster' in objectItem ? objectItem.poster : null;
 
@@ -43,7 +47,7 @@ const Poster: FC<IPoster> = ({ objectItem, className }) => {
         >
           {name}
         </div>
-        {isMovie ? (
+        {isMovie && (
           <>
             <p className='text-1xl text-blue-500 line-clamp-1'>
               {objectItem.genres?.map((genre) => genre.name).join(', ')}
@@ -53,12 +57,14 @@ const Poster: FC<IPoster> = ({ objectItem, className }) => {
               {objectItem.tags?.map((tag) => tag.tag).join(' ')}
             </p>
           </>
-        ) : (
-          <>
-            <p className='text-1xl text-gray-600'>
-              Дата рождения: {objectItem.date_of_birth}
-            </p>
-          </>
+        )}
+        {isDirector && (
+          <p className='text-1xl text-gray-600'>
+            Дата рождения: {objectItem.date_of_birth}
+          </p>
+        )}
+        {isCategory && (
+          <p className='text-1xl text-gray-600'>{objectItem.slug}</p>
         )}
       </div>
     </>

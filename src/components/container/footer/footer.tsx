@@ -13,8 +13,9 @@ const Footer: FC = () => {
         <div className='max-w-150'>
           <h3 className='font-bold text-3xl mb-5'>О проекте</h3>
           <p className='text-2xl'>
-            Данный веб-сайт является тестовой разработкой с использованием
-            React, Redux, Vite, Django и Tailwind CSS
+            Данный веб-сайт является тестовой разработкой с использованием React
+            TS, Redux Toolkit, Vite, Django REST Framework, React Router, React
+            Hook Form, Swiper и Tailwind CSS.
           </p>
         </div>
         <div>

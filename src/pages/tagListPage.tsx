@@ -1,11 +1,11 @@
 import type { FC } from 'react';
 
-import Tag from '@/components/container/tag/tag';
+import TagList from '@/components/container/tagList/tagList';
 
 const TagListPage: FC = () => {
   return (
     <>
-      <Tag />
+      <TagList />
     </>
   );
 };

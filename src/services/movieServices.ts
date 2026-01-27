@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import type { IMovie } from '../types/IMovie';
+import type { IMovie } from '@/types/IMovie';
 import type { IDirector } from '@/types/IDirector';
+import type { ICategory } from '@/types/ICategory';
 
 export interface IMoviesResponse {
   count: number;
@@ -39,6 +40,13 @@ export interface IMovieTagsResponse {
 export interface IMovieTag {
   id: number;
   tag: string;
+}
+
+export interface ICategoryResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: ICategory[];
 }
 
 export const api = createApi({
@@ -107,6 +115,11 @@ export const api = createApi({
         return currentArg !== previousArg;
       },
     }),
+    getAllCategories: builder.query<ICategoryResponse, void>({
+      query: () => ({
+        url: '/categories/',
+      }),
+    }),
     getMovieBySlug: builder.query<IMovie, string>({
       query: (slug) => ({
         url: `/movieslist/${slug}`,
@@ -117,11 +130,16 @@ export const api = createApi({
         url: `/alldirectorslist/${slug}`,
       }),
     }),
+    getCategoryBySlug: builder.query<ICategory, string>({
+      query: (slug) => ({
+        url: `/categories/${slug}`,
+      }),
+    }),
     getGenres: builder.query<IGenresResponse, void>({
-      query: () => '/allgenreslist/',
+      query: () => '/genres/',
     }),
     getMovieTags: builder.query<IMovieTagsResponse, void>({
-      query: () => '/allmovietagslist/',
+      query: () => '/movietags/',
     }),
   }),
 });

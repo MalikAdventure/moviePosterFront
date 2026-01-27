@@ -22,17 +22,27 @@ const CardList: FC = () => {
     (state) => state.filterReducer,
   );
 
-  const isMoviePage = contextPage === 'movieListPage';
-
   const moviesQuery = api.useGetAllMoviesQuery(movieFilters, {
-    skip: !isMoviePage,
+    skip: contextPage !== 'movieListPage',
   });
 
   const directorsQuery = api.useGetAllDirectorsQuery(directorFilters, {
     skip: contextPage !== 'directorListPage',
   });
 
-  const currentQuery = isMoviePage ? moviesQuery : directorsQuery;
+  const categoriesQuery = api.useGetAllCategoriesQuery(undefined, {
+    skip: contextPage !== 'categoryListPage',
+  });
+
+  let currentQuery;
+  if (contextPage === 'movieListPage') {
+    currentQuery = moviesQuery;
+  } else if (contextPage === 'directorListPage') {
+    currentQuery = directorsQuery;
+  } else {
+    currentQuery = categoriesQuery;
+  }
+
   const { data, isLoading, isFetching, error } = currentQuery;
   const objectList = data?.results || [];
 
@@ -44,9 +54,9 @@ const CardList: FC = () => {
         if (entries[0].isIntersecting && data?.next && !isFetching) {
           const nextCursor = new URL(data.next).searchParams.get('cursor');
           const payload = { cursor: nextCursor };
-          if (isMoviePage) {
+          if (contextPage === 'movieListPage') {
             dispatch(setMovieFilter(payload));
-          } else {
+          } else if (contextPage === 'directorListPage') {
             dispatch(setDirectorFilter(payload));
           }
         }
@@ -55,7 +65,7 @@ const CardList: FC = () => {
     );
     if (observerRef.current) observer.observe(observerRef.current);
     return () => observer.disconnect();
-  }, [data?.next, isFetching, dispatch, isMoviePage]);
+  }, [data?.next, isFetching, dispatch, contextPage]);
 
   return (
     <>
@@ -66,18 +76,19 @@ const CardList: FC = () => {
             <CardItem key={objectItem.slug} objectItem={objectItem} />
           ))}
         </ul>
-        {objectList?.length === 0 && !isLoading && !error && (
+        {objectList?.length === 0 && !isLoading && !isFetching && !error && (
           <p className='text-white text-center'>Информация не найдена</p>
         )}
-        {isLoading && <Spinner />}
-        {isFetching && !isLoading && <Spinner />}
+        {(isLoading || isFetching) && <Spinner />}
         {error && !isLoading && !isFetching && (
           <p className='text-red-500 text-center'>Ошибка загрузки данных</p>
         )}
         <div ref={observerRef} className='w-full flex justify-center'>
-          {!data?.next && objectList.length > 0 && (
-            <p className='text-neutral-500'>Вы просмотрели всю информацию</p>
-          )}
+          {!data?.next &&
+            objectList.length > 0 &&
+            contextPage !== 'categoryListPage' && (
+              <p className='text-neutral-500'>Вы просмотрели всю информацию</p>
+            )}
         </div>
       </section>
     </>
